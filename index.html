@@ -5,37 +5,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Markaziy Osiyo davlatlari ortasidagi iqtisodiy munosabatlar</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --primary: #0f172a;
-  --accent: #38bdf8;
-  --accent2: #818cf8;
-  --accent3: #34d399;
-  --text: #f1f5f9;
-  --muted: #94a3b8;
-  --card: rgba(15, 23, 42, 0.72);
-  --border: rgba(148, 163, 184, 0.18);
-  --glow: 0 0 40px rgba(56, 189, 248, 0.25);
+  --bg: #f4f7fb;
+  --surface: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --primary: #2563eb;
+  --primary-soft: #eff6ff;
+  --accent: #0ea5e9;
+  --green: #10b981;
+  --green-soft: #ecfdf5;
+  --orange: #f59e0b;
+  --border: #e2e8f0;
+  --shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 12px 40px rgba(15, 23, 42, 0.08);
 }
 
-* { box-sizing: border-box; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
-  margin: 0;
-  padding: 0;
-  background: var(--primary);
+  background: var(--bg);
   font-family: 'Inter', system-ui, sans-serif;
   color: var(--text);
 }
 
 .reveal {
   font-family: 'Inter', system-ui, sans-serif;
-  font-weight: 400;
   color: var(--text);
+  background: var(--bg);
 }
 
 .reveal .slides {
@@ -43,277 +45,320 @@ html, body {
 }
 
 .reveal .slides section {
-  padding: 40px 60px;
+  padding: 36px 48px;
   height: 100%;
+  overflow: hidden;
 }
 
 .reveal h1, .reveal h2, .reveal h3 {
-  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   text-transform: none;
-  color: #fff;
-  margin-bottom: 0.6em;
+  color: var(--text);
+  margin: 0 0 0.5em;
 }
 
-.reveal h1 { font-size: 2.4em; line-height: 1.15; }
-.reveal h2 { font-size: 1.85em; line-height: 1.2; }
-.reveal h3 { font-size: 1.35em; color: var(--accent); }
+.reveal h1 { font-size: 2.1em; line-height: 1.2; }
+.reveal h2 { font-size: 1.55em; line-height: 1.25; color: #0f172a; }
+.reveal h3 { font-size: 1.15em; color: var(--primary); }
 
 .reveal p, .reveal li {
-  font-size: 0.95em;
-  line-height: 1.55;
+  font-size: 0.88em;
+  line-height: 1.5;
   color: var(--text);
 }
 
-.reveal ul { margin-left: 0; padding-left: 1.2em; }
-.reveal li { margin-bottom: 0.45em; }
+.reveal .controls { color: var(--primary); }
+.reveal .progress { color: var(--primary); height: 3px; }
+.reveal .slide-number { color: var(--muted); font-size: 12px; }
 
-.bg-mesh {
+/* Background */
+.slide-bg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 20% 20%, rgba(56, 189, 248, 0.12), transparent),
-    radial-gradient(ellipse 70% 50% at 80% 80%, rgba(129, 140, 248, 0.10), transparent),
-    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(52, 211, 153, 0.06), transparent),
-    linear-gradient(160deg, #020617 0%, #0f172a 40%, #1e1b4b 100%);
+  background: linear-gradient(165deg, #f8fafc 0%, #f1f5f9 50%, #eef2ff 100%);
   z-index: -2;
 }
 
-.bg-grid {
+.slide-bg::after {
+  content: '';
   position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(148, 163, 184, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
+  top: -20%;
+  right: -10%;
+  width: 50%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%);
   z-index: -1;
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent);
 }
 
-.title-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 28px 36px;
-  backdrop-filter: blur(16px);
-  box-shadow: var(--glow);
-  max-width: 820px;
+/* Title slide */
+.title-wrap {
+  max-width: 900px;
   margin: 0 auto;
-}
-
-.title-card .meta {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px 28px;
-  margin-top: 22px;
-  font-size: 0.82em;
-}
-
-.title-card .meta span {
-  color: var(--muted);
-  display: block;
-  font-size: 0.78em;
-  margin-bottom: 2px;
-}
-
-.title-card .meta strong {
-  color: #e2e8f0;
-  font-weight: 500;
+  padding-top: 8px;
 }
 
 .badge {
   display: inline-block;
-  background: linear-gradient(135deg, rgba(56,189,248,0.2), rgba(129,140,248,0.2));
-  border: 1px solid rgba(56,189,248,0.35);
-  color: var(--accent);
-  font-size: 0.72em;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 0.68em;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 6px 14px;
+  padding: 5px 14px;
   border-radius: 999px;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
+.title-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px 32px;
+  box-shadow: var(--shadow-lg);
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 28px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+.meta-item span {
+  display: block;
+  font-size: 0.68em;
+  color: var(--muted);
+  margin-bottom: 2px;
+  font-weight: 500;
+}
+
+.meta-item strong {
+  font-size: 0.82em;
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Cards */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
-  margin-top: 18px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.card-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.card-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 14px;
 }
 
 .info-card {
-  background: var(--card);
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 20px 22px;
-  backdrop-filter: blur(12px);
-  transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  border-radius: 14px;
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
+  height: 100%;
 }
 
-.info-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(56, 189, 248, 0.4);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
-}
-
-.info-card .icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
+.info-card .num-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: var(--primary-soft);
+  color: var(--primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1em;
-  margin-bottom: 12px;
+  font-weight: 700;
+  font-size: 0.9em;
+  margin-bottom: 10px;
 }
 
 .info-card h4 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.05em;
-  margin: 0 0 8px;
-  color: #fff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.95em;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: #0f172a;
 }
 
 .info-card p {
-  font-size: 0.82em;
+  font-size: 0.78em;
   color: var(--muted);
-  margin: 0;
   line-height: 1.45;
+  margin: 0;
 }
 
+/* Stats */
 .stat-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-top: 20px;
+  gap: 12px;
+  margin-top: 16px;
 }
 
 .stat {
   flex: 1;
-  min-width: 140px;
-  background: rgba(15,23,42,0.6);
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 16px 18px;
+  border-radius: 12px;
+  padding: 14px 12px;
   text-align: center;
+  box-shadow: var(--shadow);
 }
 
-.stat .num {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 1.7em;
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--accent), var(--accent3));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.stat .val {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.45em;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1.1;
 }
 
-.stat .label {
-  font-size: 0.72em;
+.stat .lbl {
+  font-size: 0.68em;
   color: var(--muted);
   margin-top: 4px;
+  font-weight: 500;
 }
 
-.img-placeholder {
-  width: 100%;
-  height: 180px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(56,189,248,0.15), rgba(129,140,248,0.12));
-  border: 1px dashed rgba(56,189,248,0.35);
+/* Progress bars (visual charts) */
+.bar-list { margin-top: 14px; }
+
+.bar-item {
+  margin-bottom: 12px;
+}
+
+.bar-item .bar-head {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--muted);
+  justify-content: space-between;
+  margin-bottom: 4px;
   font-size: 0.8em;
+}
+
+.bar-item .bar-head strong { color: #0f172a; }
+.bar-item .bar-head span { color: var(--muted); font-weight: 500; }
+
+.bar-track {
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 999px;
   overflow: hidden;
-  position: relative;
 }
 
-.img-placeholder img {
-  width: 100%;
+.bar-fill {
   height: 100%;
-  object-fit: cover;
-  opacity: 0.85;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Two column */
 .two-col {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 28px;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 20px;
   align-items: start;
+  margin-top: 12px;
 }
 
+/* Clean list */
 .list-clean {
   list-style: none;
   padding: 0;
-  margin: 0;
 }
 
 .list-clean li {
   position: relative;
-  padding-left: 28px;
-  margin-bottom: 12px;
-  font-size: 0.9em;
+  padding-left: 22px;
+  margin-bottom: 10px;
+  font-size: 0.84em;
+  line-height: 1.45;
 }
 
 .list-clean li::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 8px;
-  width: 10px;
-  height: 10px;
+  top: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), var(--accent2));
-  box-shadow: 0 0 10px rgba(56,189,248,0.5);
+  background: var(--primary);
 }
 
+/* Source list */
 .source-list {
   columns: 2;
-  column-gap: 32px;
-  font-size: 0.78em;
-  line-height: 1.5;
+  column-gap: 28px;
+  font-size: 0.74em;
+  line-height: 1.45;
+  margin-top: 12px;
 }
 
 .source-list li {
   break-inside: avoid;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   color: var(--muted);
+  padding-left: 4px;
 }
 
-.source-list a {
-  color: var(--accent);
-  text-decoration: none;
+/* Image box */
+.img-box {
+  width: 100%;
+  height: 160px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #e2e8f0;
+  border: 1px solid var(--border);
 }
 
-.footer-note {
-  position: absolute;
-  bottom: 24px;
-  left: 60px;
-  right: 60px;
-  font-size: 0.65em;
-  color: var(--muted);
+.img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Tag pills */
+.tags {
   display: flex;
-  justify-content: space-between;
-  opacity: 0.7;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
 }
 
-.reveal .controls {
-  color: var(--accent);
+.tag {
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 0.72em;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 999px;
 }
 
-.reveal .progress {
-  color: var(--accent);
-  height: 3px;
+.tag.green {
+  background: var(--green-soft);
+  color: #059669;
 }
 
+/* Fragment animations */
 .fragment.fade-up {
   opacity: 0;
-  transform: translateY(24px);
-  transition: all 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(18px);
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .fragment.fade-up.visible {
   opacity: 1;
@@ -322,8 +367,8 @@ html, body {
 
 .fragment.scale-in {
   opacity: 0;
-  transform: scale(0.92);
-  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: scale(0.94);
+  transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .fragment.scale-in.visible {
   opacity: 1;
@@ -331,11 +376,12 @@ html, body {
 }
 
 @media (max-width: 900px) {
-  .reveal .slides section { padding: 28px 32px; }
-  .two-col, .title-card .meta { grid-template-columns: 1fr; }
+  .reveal .slides section { padding: 24px 28px; }
+  .card-grid, .card-grid-4, .meta-grid, .two-col { grid-template-columns: 1fr; }
+  .card-grid-2 { grid-template-columns: 1fr; }
+  .reveal h1 { font-size: 1.6em; }
+  .reveal h2 { font-size: 1.3em; }
   .source-list { columns: 1; }
-  .reveal h1 { font-size: 1.8em; }
-  .reveal h2 { font-size: 1.45em; }
 }
 </style>
 </head>
@@ -343,309 +389,315 @@ html, body {
 <div class="reveal">
 <div class="slides">
 
-<!-- SLIDE 1: Title -->
-<section data-transition="zoom" data-background-transition="zoom">
-  <div class="bg-mesh"></div>
-  <div class="bg-grid"></div>
-  <div class="title-card fragment fade-up">
-    <div class="badge">Mustaqil ish · 2026</div>
-    <h1 style="font-size:1.85em; margin-bottom:8px;">Markaziy Osiyo davlatlari ortasidagi iqtisodiy munosabatlar</h1>
-    <p style="color:var(--muted); font-size:0.9em; margin:0 0 8px;">Mintaqaviy integratsiya, savdo va investitsiya istiqbollari</p>
-    <div class="meta">
-      <div><span>Ta’lim muassasasi</span><strong>________________________</strong></div>
-      <div><span>Fan nomi</span><strong>________________________</strong></div>
-      <div><span>Mavzu</span><strong>Markaziy Osiyo davlatlari ortasidagi iqtisodiy munosabatlar</strong></div>
-      <div><span>Talaba F.I.Sh.</span><strong>________________________</strong></div>
-      <div><span>Guruh raqami</span><strong>________________________</strong></div>
-      <div><span>O‘qituvchi F.I.Sh.</span><strong>________________________</strong></div>
-      <div><span>Sana</span><strong>2026-yil</strong></div>
-    </div>
-  </div>
-</section>
-
-<!-- SLIDE 2: Relevance, Goal, Tasks -->
-<section data-transition="slide" data-background-transition="convex">
-  <div class="bg-mesh"></div>
-  <div class="bg-grid"></div>
-  <h2 class="fragment fade-up">Dolzarbligi, maqsad va asosiy vazifalar</h2>
-  <div class="card-grid">
-    <div class="info-card fragment scale-in">
-      <div class="icon">①</div>
-      <h4>Dolzarbligi</h4>
-      <p>Markaziy Osiyo mamlakatlari o‘rtasidagi savdo 2017–2025 yillarda 2 barobardan ortiq o‘sdi. Mintaqa YAIM 2025-yilda 543 mlrd dollarga yetdi. Integratsiya iqtisodiy barqarorlik va raqobatbardoshlikning asosiy omiliga aylandi.</p>
-    </div>
-    <div class="info-card fragment scale-in">
-      <div class="icon">②</div>
-      <h4>Maqsad</h4>
-      <p>Markaziy Osiyo davlatlari o‘rtasidagi iqtisodiy munosabatlarning hozirgi holati, asosiy yo‘nalishlari va rivojlanish istiqbollarini tahlil qilish.</p>
-    </div>
-    <div class="info-card fragment scale-in">
-      <div class="icon">③</div>
-      <h4>Asosiy vazifalar</h4>
-      <p>• Savdo va investitsiya dinamikasini o‘rganish<br>• Transport-logistika va energetika hamkorligini tahlil qilish<br>• Mintaqaviy tashkilotlar rolini baholash<br>• Istiqbolli yo‘nalishlarni aniqlash</p>
-    </div>
-  </div>
-</section>
-
-<!-- SLIDE 3: Overview -->
-<section data-transition="convex" data-background-transition="concave">
-  <div class="bg-mesh"></div>
-  <div class="bg-grid"></div>
-  <h2 class="fragment fade-up">Markaziy Osiyo iqtisodiy makoni</h2>
-  <div class="two-col">
-    <div>
-      <p class="fragment fade-up">Mintaqa beshta davlatdan iborat: <strong>Qozog‘iston, O‘zbekiston, Qirg‘iziston, Tojikiston, Turkmaniston</strong>. 2020–2025 yillarda umumiy YAIM 285 mlrd dollardan 543 mlrd dollarga o‘sdi.</p>
-      <ul class="list-clean fragment fade-up">
-        <li>Qozog‘iston – mintaqaning eng yirik iqtisodiyoti (~56%)</li>
-        <li>O‘zbekiston – ikkinchi o‘rin (~27%)</li>
-        <li>Qolgan uchta davlat – ~17%</li>
-      </ul>
-    </div>
-    <div class="fragment scale-in">
-      <div class="img-placeholder">
-        <img src="https://images.unsplash.com/photo-1526779259212-939e64788e3c?w=800&q=80" alt="Central Asia map concept" onerror="this.style.display='none'">
-        <span style="position:absolute;">Markaziy Osiyo xaritasi</span>
+<!-- ========== SLIDE 1: Title ========== -->
+<section data-transition="fade">
+  <div class="slide-bg"></div>
+  <div class="title-wrap">
+    <div class="badge fragment fade-up">Mustaqil ish · 2026</div>
+    <div class="title-card fragment fade-up">
+      <h1 style="font-size:1.7em; margin-bottom:6px;">Markaziy Osiyo davlatlari ortasidagi iqtisodiy munosabatlar</h1>
+      <p style="color:var(--muted); font-size:0.88em; margin-bottom:4px;">Mintaqaviy integratsiya, savdo va investitsiya istiqbollari</p>
+      <div class="meta-grid">
+        <div class="meta-item">
+          <span>Ta'lim muassasasi</span>
+          <strong>TDIU (TGEU / TSUE)</strong>
+        </div>
+        <div class="meta-item">
+          <span>Fan nomi</span>
+          <strong>O'zbek tili</strong>
+        </div>
+        <div class="meta-item">
+          <span>Mavzu</span>
+          <strong>Markaziy Osiyo iqtisodiy munosabatlari</strong>
+        </div>
+        <div class="meta-item">
+          <span>Talaba F.I.Sh.</span>
+          <strong>Baxtiyorov Muhammadsaid</strong>
+        </div>
+        <div class="meta-item">
+          <span>Guruh</span>
+          <strong>MO-405</strong>
+        </div>
+        <div class="meta-item">
+          <span>Sana</span>
+          <strong>19.10.2026</strong>
+        </div>
       </div>
     </div>
   </div>
-  <div class="stat-row fragment fade-up">
-    <div class="stat"><div class="num">$543 mlrd</div><div class="label">Mintaqa YAIM (2025)</div></div>
-    <div class="stat"><div class="num">~2×</div><div class="label">YAIM o‘sishi (2020–25)</div></div>
-    <div class="stat"><div class="num">5</div><div class="label">Davlat</div></div>
+</section>
+
+<!-- ========== SLIDE 2: Relevance ========== -->
+<section data-transition="slide">
+  <div class="slide-bg"></div>
+  <h2 class="fragment fade-up">Dolzarbligi, maqsad va vazifalar</h2>
+  <div class="card-grid">
+    <div class="info-card fragment scale-in">
+      <div class="num-icon">1</div>
+      <h4>Dolzarbligi</h4>
+      <p>Mintaqa ichidagi savdo 2017–2025 yillarda 2 barobardan ortiq o'sdi. YAIM 543 mlrd $ ga yetdi. Integratsiya — barqaror o'sish omili.</p>
+    </div>
+    <div class="info-card fragment scale-in">
+      <div class="num-icon">2</div>
+      <h4>Maqsad</h4>
+      <p>Markaziy Osiyo davlatlari o'rtasidagi iqtisodiy munosabatlar holati, yo'nalishlari va istiqbollarini tahlil qilish.</p>
+    </div>
+    <div class="info-card fragment scale-in">
+      <div class="num-icon">3</div>
+      <h4>Vazifalar</h4>
+      <p>Savdo dinamikasi · Transport va energetika · Mintaqaviy platformalar · Istiqbolli yo'nalishlar</p>
+    </div>
   </div>
 </section>
 
-<!-- SLIDE 4: Trade dynamics -->
-<section data-transition="slide" data-background-transition="slide">
-  <div class="bg-mesh"></div>
-  <div class="bg-grid"></div>
-  <h2 class="fragment fade-up">O‘zaro savdo dinamikasi</h2>
-  <p class="fragment fade-up" style="color:var(--muted); max-width:90%;">O‘zbekistonning Markaziy Osiyo davlatlari bilan savdo aylanmasi 2017-yildagi 3,2 mlrd dollardan 2025-yilda 8,3 mlrd dollarga yetdi (+15% yillik).</p>
-  <div class="card-grid">
+<!-- ========== SLIDE 3: Economic space ========== -->
+<section data-transition="convex">
+  <div class="slide-bg"></div>
+  <h2 class="fragment fade-up">Markaziy Osiyo iqtisodiy makoni</h2>
+  <p class="fragment fade-up" style="color:var(--muted); font-size:0.85em; max-width:95%;">Beshta davlat: Qozog'iston, O'zbekiston, Qirg'iziston, Tojikiston, Turkmaniston. 2020–2025 yillarda YAIM 285 → 543 mlrd $.</p>
+  
+  <div class="bar-list fragment fade-up">
+    <div class="bar-item">
+      <div class="bar-head"><strong>Qozog'iston</strong><span>~56%</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:56%"></div></div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-head"><strong>O'zbekiston</strong><span>~27%</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:27%"></div></div>
+    </div>
+    <div class="bar-item">
+      <div class="bar-head"><strong>Qolgan 3 davlat</strong><span>~17%</span></div>
+      <div class="bar-track"><div class="bar-fill" style="width:17%"></div></div>
+    </div>
+  </div>
+
+  <div class="stat-row fragment fade-up">
+    <div class="stat"><div class="val">$543 mlrd</div><div class="lbl">Mintaqa YAIM (2025)</div></div>
+    <div class="stat"><div class="val">~2×</div><div class="lbl">YAIM o'sishi (2020–25)</div></div>
+    <div class="stat"><div class="val">5</div><div class="lbl">Davlat</div></div>
+  </div>
+</section>
+
+<!-- ========== SLIDE 4: Trade ========== -->
+<section data-transition="slide">
+  <div class="slide-bg"></div>
+  <h2 class="fragment fade-up">O'zaro savdo dinamikasi</h2>
+  <p class="fragment fade-up" style="color:var(--muted); font-size:0.84em;">O'zbekistonning mintaqa bilan savdosi: 3,2 mlrd $ (2017) → 8,3 mlrd $ (2025). Yillik o'sish ~15%.</p>
+  
+  <div class="card-grid-4">
     <div class="info-card fragment scale-in">
-      <h4>Qozog‘iston</h4>
-      <p>Asosiy sherik. Savdo ~4–5 mlrd $. Sanoat kooperatsiyasi va investitsiya fondlari faol rivojlanmoqda.</p>
+      <h4>Qozog'iston</h4>
+      <p style="font-size:1.1em; font-weight:700; color:var(--primary); margin:6px 0;">4–5 mlrd $</p>
+      <p>Asosiy sherik. Sanoat kooperatsiyasi faol.</p>
     </div>
     <div class="info-card fragment scale-in">
-      <h4>Qirg‘iziston</h4>
-      <p>Savdo ~700 mln $. Chegara rejimining soddalashtirilishi (ID-karta) savdoni tezlashtirdi.</p>
+      <h4>Qirg'iziston</h4>
+      <p style="font-size:1.1em; font-weight:700; color:var(--primary); margin:6px 0;">~700 mln $</p>
+      <p>ID-karta rejimi savdoni tezlashtirdi.</p>
     </div>
     <div class="info-card fragment scale-in">
       <h4>Tojikiston</h4>
-      <p>Savdo ~570 mln $. Energetika, qishloq xo‘jaligi va transport yo‘nalishlarida hamkorlik kengaymoqda.</p>
+      <p style="font-size:1.1em; font-weight:700; color:var(--primary); margin:6px 0;">~570 mln $</p>
+      <p>Energetika va transport yo'nalishlari.</p>
     </div>
     <div class="info-card fragment scale-in">
       <h4>Turkmaniston</h4>
-      <p>Savdo 1,15 mlrd $. Energetika va transport koridorlari asosiy yo‘nalish.</p>
+      <p style="font-size:1.1em; font-weight:700; color:var(--primary); margin:6px 0;">1,15 mlrd $</p>
+      <p>Energetika va koridorlar.</p>
     </div>
   </div>
 </section>
 
-<!-- SLIDE 5: Integration platforms -->
-<section data-transition="zoom" data-background-transition="zoom">
-  <div class="bg-mesh"></div>
-  <div class="bg-grid"></div>
+<!-- ========== SLIDE 5: Platforms ========== -->
+<section data-transition="zoom">
+  <div class="slide-bg"></div>
   <h2 class="fragment fade-up">Mintaqaviy integratsiya platformalari</h2>
-  <div class="card-grid">
-    <div class="info-card fragment fade-up">
-      <div class="icon">C5</div>
+  <div class="card-grid-2">
+    <div class="info-card fragment scale-in">
+      <div class="num-icon">C5</div>
       <h4>Maslahat uchrashuvlari</h4>
-      <p>Davlat rahbarlarining yillik formatlari. 2025–2026 yillarda savdo, transport va sanoat kooperatsiyasi bo‘yicha yangi kelishuvlar qabul qilindi.</p>
+      <p>Davlat rahbarlari yillik formati. 2025–2026 yillarda savdo, transport va sanoat bo'yicha yangi kelishuvlar.</p>
     </div>
-    <div class="info-card fragment fade-up">
-      <div class="icon">CA</div>
+    <div class="info-card fragment scale-in">
+      <div class="num-icon">CA</div>
       <h4>CAREC</h4>
-      <p>Osiyo Taraqqiyot Banki dasturi. 11 mamlakat. Transport, savdo va infratuzilma loyihalari ($60 mlrd+ investitsiya).</p>
+      <p>Osiyo Taraqqiyot Banki dasturi. 11 mamlakat. $60 mlrd+ infratuzilma investitsiyalari.</p>
     </div>
-    <div class="info-card fragment fade-up">
-      <div class="icon">EAEU</div>
+    <div class="info-card fragment scale-in">
+      <div class="num-icon">EU</div>
       <h4>YeOI (EAEU)</h4>
-      <p>O‘zbekiston kuzatuvchi maqomida. 2025-yilda YeOI bilan savdo $20 mlrd dan oshdi.</p>
+      <p>O'zbekiston — kuzatuvchi. 2025-yilda savdo $20 mlrd dan oshdi.</p>
     </div>
-    <div class="info-card fragment fade-up">
-      <div class="icon">SCO</div>
+    <div class="info-card fragment scale-in">
+      <div class="num-icon">SC</div>
       <h4>ShHT / MDH</h4>
-      <p>Ko‘ptomonlama savdo va xavfsizlik mexanizmlari. Investitsiya va logistika loyihalari qo‘llab-quvvatlanadi.</p>
+      <p>Ko'ptomonlama savdo va xavfsizlik mexanizmlari. Logistika loyihalari.</p>
     </div>
   </div>
 </section>
 
-<!-- SLIDE 6: Transport & Logistics -->
-<section data-transition="convex" data-background-transition="concave">
-  <div class="bg-mesh"></div>
-  <div class="bg-grid"></div>
+<!-- ========== SLIDE 6: Transport ========== -->
+<section data-transition="convex">
+  <div class="slide-bg"></div>
   <h2 class="fragment fade-up">Transport va logistika</h2>
   <div class="two-col">
     <div>
       <ul class="list-clean">
-        <li class="fragment fade-up"><strong>O‘rta koridor</strong> – Xitoy–Markaziy Osiyo–Kavkaz–Yevropa yo‘nalishi faol rivojlanmoqda.</li>
-        <li class="fragment fade-up">Temir yo‘l va avtomobil infratuzilmasi modernizatsiyasi.</li>
-        <li class="fragment fade-up">Bojxona tartib-taomillarini raqamlashtirish va soddalashtirish.</li>
-        <li class="fragment fade-up">Chegara punktlarini modernizatsiya qilish (CAREC loyihalari).</li>
-        <li class="fragment fade-up">Kaspiy dengizi orqali multimodal transport.</li>
+        <li class="fragment fade-up"><strong>O'rta koridor</strong> — Xitoy–Markaziy Osiyo–Kavkaz–Yevropa</li>
+        <li class="fragment fade-up">Temir yo'l va avtomobil infratuzilmasi modernizatsiyasi</li>
+        <li class="fragment fade-up">Bojxona tartib-taomillarini raqamlashtirish</li>
+        <li class="fragment fade-up">Chegara punktlarini yangilash (CAREC)</li>
+        <li class="fragment fade-up">Kaspiy orqali multimodal transport</li>
       </ul>
     </div>
     <div class="fragment scale-in">
-      <div class="img-placeholder">
-        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80" alt="Logistics corridor" onerror="this.style.display='none'">
-        <span style="position:absolute;">Transport koridorlari</span>
+      <div class="img-box">
+        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=700&q=80" alt="Logistics" onerror="this.parentElement.style.background='#dbeafe'">
       </div>
-      <p style="font-size:0.75em; color:var(--muted); margin-top:10px;">Mintaqa global savdoning muhim quruqlik yo‘nalishlaridan biriga aylanishi mumkin.</p>
+      <p style="font-size:0.72em; color:var(--muted); margin-top:8px;">Mintaqa global savdoning muhim quruqlik yo'nalishiga aylanishi mumkin.</p>
     </div>
   </div>
 </section>
 
-<!-- SLIDE 7: Energy cooperation -->
-<section data-transition="slide" data-background-transition="slide">
-  <div class="bg-mesh"></div>
-  <div class="bg-grid"></div>
+<!-- ========== SLIDE 7: Energy ========== -->
+<section data-transition="slide">
+  <div class="slide-bg"></div>
   <h2 class="fragment fade-up">Energetika hamkorligi</h2>
-  <div class="card-grid">
+  <div class="card-grid-2">
     <div class="info-card fragment scale-in">
       <h4>Uglevodorodlar</h4>
-      <p>Qozog‘iston va Turkmaniston – yirik eksportchilar. O‘zaro gaz va neft mahsulotlari yetkazib berish shartnomalari mavjud.</p>
+      <p>Qozog'iston va Turkmaniston — yirik eksportchilar. O'zaro gaz va neft mahsulotlari yetkazib berish.</p>
     </div>
     <div class="info-card fragment scale-in">
       <h4>Gidroenergetika</h4>
-      <p>Tojikiston va Qirg‘iziston – suv resurslari salohiyati. Mintaqaviy energiya almashinuvi muhim ahamiyatga ega.</p>
+      <p>Tojikiston va Qirg'iziston — suv resurslari salohiyati. Mintaqaviy energiya almashinuvi.</p>
     </div>
     <div class="info-card fragment scale-in">
       <h4>Yashil energiya</h4>
-      <p>Quyosh va shamol loyihalari. Qo‘shma investitsiyalar va texnologiya transferi istiqbollari.</p>
+      <p>Quyosh va shamol loyihalari. Qo'shma investitsiyalar va texnologiya transferi.</p>
     </div>
     <div class="info-card fragment scale-in">
       <h4>Suv resurslari</h4>
-      <p>Transchegaraviy daryolar boshqaruvi – iqtisodiy barqarorlikning muhim sharti.</p>
+      <p>Transchegaraviy daryolar boshqaruvi — iqtisodiy barqarorlik sharti.</p>
     </div>
   </div>
 </section>
 
-<!-- SLIDE 8: Industrial cooperation -->
-<section data-transition="zoom" data-background-transition="zoom">
-  <div class="bg-mesh"></div>
-  <div class="bg-grid"></div>
+<!-- ========== SLIDE 8: Industry ========== -->
+<section data-transition="zoom">
+  <div class="slide-bg"></div>
   <h2 class="fragment fade-up">Sanoat kooperatsiyasi</h2>
-  <p class="fragment fade-up" style="color:var(--muted);">«Olti iqtisodiyot – bitta mahsulot» konsepsiyasi: oddiy savdodan qo‘shma ishlab chiqarishga o‘tish.</p>
+  <p class="fragment fade-up" style="color:var(--muted); font-size:0.85em;">«Olti iqtisodiyot – bitta mahsulot» — oddiy savdodan qo'shma ishlab chiqarishga o'tish.</p>
+  
   <div class="stat-row fragment fade-up">
-    <div class="stat"><div class="num">$1,3 mlrd</div><div class="label">Mintaqadan investitsiya (2025)</div></div>
-    <div class="stat"><div class="num">2025–27</div><div class="label">Sanoat kooperatsiyasi rejasi</div></div>
-    <div class="stat"><div class="num">Made in CA</div><div class="label">Yagona brend tashabbusi</div></div>
+    <div class="stat"><div class="val">$1,3 mlrd</div><div class="lbl">Mintaqadan investitsiya (2025)</div></div>
+    <div class="stat"><div class="val">2025–27</div><div class="lbl">Sanoat kooperatsiyasi rejasi</div></div>
+    <div class="stat"><div class="val">Made in CA</div><div class="lbl">Yagona brend tashabbusi</div></div>
   </div>
-  <ul class="list-clean" style="margin-top:22px;">
-    <li class="fragment fade-up">Qo‘shma sanoat zonalari va ishlab chiqarish zanjirlari</li>
-    <li class="fragment fade-up">Avtomobilsozlik, to‘qimachilik, oziq-ovqat, farmatsevtika</li>
-    <li class="fragment fade-up">Ikki tomonlama investitsiya fondlari (Qozog‘iston, Ozarbayjon va boshqalar)</li>
-  </ul>
+
+  <div class="tags fragment fade-up">
+    <span class="tag">Qo'shma sanoat zonalari</span>
+    <span class="tag">Avtomobilsozlik</span>
+    <span class="tag">To'qimachilik</span>
+    <span class="tag green">Oziq-ovqat</span>
+    <span class="tag green">Farmatsevtika</span>
+  </div>
 </section>
 
-<!-- SLIDE 9: Investment & Trade goals -->
-<section data-transition="convex" data-background-transition="concave">
-  <div class="bg-mesh"></div>
-  <div class="bg-grid"></div>
+<!-- ========== SLIDE 9: Goals ========== -->
+<section data-transition="convex">
+  <div class="slide-bg"></div>
   <h2 class="fragment fade-up">Savdo va investitsiya maqsadlari</h2>
   <div class="two-col">
-    <div>
-      <ul class="list-clean">
-        <li class="fragment fade-up">O‘zaro savdoni <strong>$20 mlrd</strong> ga yetkazish maqsadi qo‘yilgan.</li>
-        <li class="fragment fade-up">«Made in Central Asia» brendi ostida qo‘shma ishlab chiqarish.</li>
-        <li class="fragment fade-up">2035-yilgacha savdo-iqtisodiy hamkorlik dasturi taklifi.</li>
-        <li class="fragment fade-up">Yagona investitsiya makoni deklaratsiyasi.</li>
-        <li class="fragment fade-up">Elektron savdo va raqamli bojxona platformalari.</li>
-      </ul>
-    </div>
+    <ul class="list-clean">
+      <li class="fragment fade-up">O'zaro savdoni <strong>$20 mlrd</strong> ga yetkazish</li>
+      <li class="fragment fade-up">«Made in Central Asia» brendi ostida ishlab chiqarish</li>
+      <li class="fragment fade-up">2035-yilgacha savdo-iqtisodiy hamkorlik dasturi</li>
+      <li class="fragment fade-up">Yagona investitsiya makoni deklaratsiyasi</li>
+      <li class="fragment fade-up">Elektron savdo va raqamli bojxona</li>
+    </ul>
     <div class="fragment scale-in">
-      <div class="img-placeholder">
-        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Trade growth" onerror="this.style.display='none'">
-        <span style="position:absolute;">Savdo o‘sishi</span>
+      <div class="img-box">
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&q=80" alt="Growth" onerror="this.parentElement.style.background='#dbeafe'">
       </div>
     </div>
   </div>
 </section>
 
-<!-- SLIDE 10: Challenges -->
-<section data-transition="slide" data-background-transition="slide">
-  <div class="bg-mesh"></div>
-  <div class="bg-grid"></div>
+<!-- ========== SLIDE 10: Challenges ========== -->
+<section data-transition="slide">
+  <div class="slide-bg"></div>
   <h2 class="fragment fade-up">Muammolar va cheklovlar</h2>
-  <div class="card-grid">
+  <div class="card-grid-2">
     <div class="info-card fragment scale-in">
       <h4>Infratuzilma</h4>
-      <p>Transport tarmog‘ining to‘liq uyg‘unlashmaganligi, bojxona to‘siqlari va logistika xarajatlari.</p>
+      <p>Transport tarmog'ining to'liq uyg'unlashmaganligi, bojxona to'siqlari, yuqori logistika xarajatlari.</p>
     </div>
     <div class="info-card fragment scale-in">
       <h4>Suv va iqlim</h4>
-      <p>Suv tanqisligi, ekstremal ob-havo hodisalari iqtisodiy o‘sishga tahdid soladi.</p>
+      <p>Suv tanqisligi va ekstremal ob-havo hodisalari iqtisodiy o'sishga tahdid soladi.</p>
     </div>
     <div class="info-card fragment scale-in">
       <h4>Diversifikatsiya</h4>
-      <p>Eksport tarkibida xom ashyo ulushi hali ham yuqori. Qo‘shimcha qiymatli mahsulotlar ishlab chiqarishni oshirish zarur.</p>
+      <p>Eksport tarkibida xom ashyo ulushi yuqori. Qo'shimcha qiymatli mahsulotlar kerak.</p>
     </div>
     <div class="info-card fragment scale-in">
       <h4>Huquqiy baza</h4>
-      <p>Standartlar va tartib-taomillarni yanada uyg‘unlashtirish talab etiladi.</p>
+      <p>Standartlar va tartib-taomillarni yanada uyg'unlashtirish talab etiladi.</p>
     </div>
   </div>
 </section>
 
-<!-- SLIDE 11: Opportunities -->
-<section data-transition="zoom" data-background-transition="zoom">
-  <div class="bg-mesh"></div>
-  <div class="bg-grid"></div>
+<!-- ========== SLIDE 11: Opportunities ========== -->
+<section data-transition="zoom">
+  <div class="slide-bg"></div>
   <h2 class="fragment fade-up">Istiqbollar va imkoniyatlar</h2>
   <ul class="list-clean">
-    <li class="fragment fade-up"><strong>Sanoat zanjirlari</strong> – qo‘shma ishlab chiqarish orqali eksport salohiyatini oshirish.</li>
-    <li class="fragment fade-up"><strong>Raqamli transformatsiya</strong> – e-commerce, raqamli bojxona, ma’lumot almashish.</li>
-    <li class="fragment fade-up"><strong>Yashil iqtisodiyot</strong> – qayta tiklanuvchi energiya va suv tejovchi texnologiyalar.</li>
-    <li class="fragment fade-up"><strong>Inson kapitali</strong> – mintaqaviy kasbiy standartlar va qo‘shma ta’lim dasturlari.</li>
-    <li class="fragment fade-up"><strong>Tashqi sheriklar</strong> – Xitoy, YeI, Turkiya, Koreya, AQSh (C5+1) bilan bog‘liqlikni kuchaytirish.</li>
+    <li class="fragment fade-up"><strong>Sanoat zanjirlari</strong> — qo'shma ishlab chiqarish orqali eksportni oshirish</li>
+    <li class="fragment fade-up"><strong>Raqamli transformatsiya</strong> — e-commerce, raqamli bojxona, ma'lumot almashish</li>
+    <li class="fragment fade-up"><strong>Yashil iqtisodiyot</strong> — qayta tiklanuvchi energiya va suv tejovchi texnologiyalar</li>
+    <li class="fragment fade-up"><strong>Inson kapitali</strong> — mintaqaviy kasbiy standartlar va qo'shma ta'lim</li>
+    <li class="fragment fade-up"><strong>Tashqi sheriklar</strong> — Xitoy, YeI, Turkiya, Koreya, AQSh (C5+1)</li>
   </ul>
-  <div class="fragment fade-up" style="margin-top:24px;">
-    <div class="img-placeholder" style="height:140px;">
-      <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80" alt="Future growth" onerror="this.style.display='none'">
-      <span style="position:absolute;">Kelajak istiqbollari</span>
-    </div>
-  </div>
 </section>
 
-<!-- SLIDE 12: Conclusion -->
-<section data-transition="convex" data-background-transition="concave">
-  <div class="bg-mesh"></div>
-  <div class="bg-grid"></div>
+<!-- ========== SLIDE 12: Conclusion ========== -->
+<section data-transition="convex">
+  <div class="slide-bg"></div>
   <h2 class="fragment fade-up">Xulosa</h2>
-  <div class="card-grid">
+  <div class="card-grid-2">
     <div class="info-card fragment scale-in">
       <h4>Asosiy natija</h4>
-      <p>Markaziy Osiyo davlatlari o‘rtasidagi iqtisodiy munosabatlar siyosiy yaqinlashuvdan amaliy integratsiyaga o‘tdi. Savdo, investitsiya va transport sohasida sezilarli o‘sish kuzatilmoqda.</p>
+      <p>Iqtisodiy munosabatlar siyosiy yaqinlashuvdan amaliy integratsiyaga o'tdi. Savdo, investitsiya va transport sohasida sezilarli o'sish kuzatilmoqda.</p>
     </div>
     <div class="info-card fragment scale-in">
       <h4>Keyingi qadamlar</h4>
-      <p>Sanoat kooperatsiyasini chuqurlashtirish, yagona savdo-investitsiya makonini shakllantirish va infratuzilmani uyg‘unlashtirish – mintaqaning barqaror rivojlanishi uchun muhim.</p>
+      <p>Sanoat kooperatsiyasini chuqurlashtirish, yagona savdo-investitsiya makonini shakllantirish va infratuzilmani uyg'unlashtirish.</p>
     </div>
   </div>
-  <p class="fragment fade-up" style="margin-top:28px; font-size:1.05em; color:var(--accent);">
-    Mintaqaviy hamkorlik – Markaziy Osiyo mamlakatlari uchun strategik ustuvorlik.
+  <p class="fragment fade-up" style="margin-top:22px; font-size:1em; color:var(--primary); font-weight:600;">
+    Mintaqaviy hamkorlik — Markaziy Osiyo uchun strategik ustuvorlik.
   </p>
 </section>
 
-<!-- SLIDE 13: Sources -->
-<section data-transition="slide" data-background-transition="slide">
-  <div class="bg-mesh"></div>
-  <div class="bg-grid"></div>
-  <h2 class="fragment fade-up">Foydalanilgan adabiyotlar va internet manbalari</h2>
+<!-- ========== SLIDE 13: Sources ========== -->
+<section data-transition="slide">
+  <div class="slide-bg"></div>
+  <h2 class="fragment fade-up">Foydalanilgan manbalar</h2>
   <ol class="source-list fragment fade-up">
-    <li>EBRD Regional Economic Prospects, 2026 – Markaziy Osiyo o‘sish prognozlari.</li>
-    <li>O‘zbekiston Respublikasi Investitsiyalar, sanoat va savdo vazirligi ma’lumotlari (2025–2026).</li>
-    <li>CAREC Program – Asian Development Bank. carecprogram.org</li>
-    <li>O‘zA, Daryo, Gazeta.uz – Markaziy Osiyo Maslahat uchrashuvlari materiallari (2025–2026).</li>
-    <li>Embassy of Uzbekistan – Regional cooperation updates (2025–2026).</li>
-    <li>Iqtisodiy tadqiqotlar va islohotlar markazi – savdo dinamikasi tahlillari.</li>
-    <li>UNCTADstat / World Bank – mintaqaviy savdo va investitsiya ko‘rsatkichlari.</li>
-    <li>Markaziy Osiyo davlat rahbarlarining VIII Maslahat uchrashuvi (Avaza, 2026) yakunlari.</li>
-    <li>Shanghai Cooperation Organisation va MDH doirasidagi iqtisodiy hujjatlar.</li>
-    <li>Official statistics of Kazakhstan, Uzbekistan, Kyrgyzstan – mutual trade data.</li>
+    <li>EBRD Regional Economic Prospects, 2026</li>
+    <li>O'zbekiston Investitsiyalar, sanoat va savdo vazirligi (2025–2026)</li>
+    <li>CAREC Program — Asian Development Bank</li>
+    <li>O'zA, Daryo, Gazeta.uz — Maslahat uchrashuvlari materiallari</li>
+    <li>Embassy of Uzbekistan — Regional cooperation updates</li>
+    <li>Iqtisodiy tadqiqotlar va islohotlar markazi</li>
+    <li>UNCTADstat / World Bank — savdo va investitsiya ma'lumotlari</li>
+    <li>VIII Maslahat uchrashuvi (Avaza, 2026) yakunlari</li>
+    <li>ShHT va MDH doirasidagi iqtisodiy hujjatlar</li>
+    <li>Qozog'iston, O'zbekiston, Qirg'iziston rasmiy statistikasi</li>
   </ol>
-  <p class="fragment fade-up" style="margin-top:20px; font-size:0.8em; color:var(--muted);">
-    Barcha raqamlar ochiq manbalarga asoslangan. Taqdimot o‘quv maqsadida tayyorlangan.
+  <p class="fragment fade-up" style="margin-top:16px; font-size:0.75em; color:var(--muted);">
+    Barcha raqamlar ochiq manbalarga asoslangan. Taqdimot o'quv maqsadida tayyorlangan.
   </p>
 </section>
 
@@ -659,26 +711,20 @@ Reveal.initialize({
   slideNumber: 'c/t',
   width: 1280,
   height: 720,
-  margin: 0.06,
-  transition: 'convex',
+  margin: 0.05,
+  minScale: 0.4,
+  maxScale: 1.2,
+  transition: 'slide',
   transitionSpeed: 'default',
-  backgroundTransition: 'zoom',
+  backgroundTransition: 'fade',
   center: false,
   controls: true,
   progress: true,
-  autoAnimate: true,
   fragments: true,
-  fragmentInURL: false,
   navigationMode: 'default',
   keyboard: true,
   overview: true,
-  touch: true,
-  loop: false,
-  rtl: false,
-  shuffle: false,
-  mouseWheel: false,
-  hideInactiveCursor: true,
-  hideCursorTime: 3000
+  touch: true
 });
 </script>
 </body>
